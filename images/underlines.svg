@@ -1,0 +1,6 @@
+<svg width="282" height="14" viewBox="0 0 282 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="line1" d="M1 4.5L13 4.5L32.5 3L67.5 4.5L118 6.5L179 6.5L239 9.5L281 4.5" stroke="black"/>
+<path class="hiddenLine" id="line2" d="M1 4.5L10 3L23.5 7.5L39 5.5L58.5 3L81.5 5.5L93 5.5L133.5 1L151.5 5.5L177 3L227 1L259.5 5.5L276.5 10.5" stroke="black"/>
+<path class="hiddenLine" id="line3" d="M1 7.5L10.5 4.5L35 7.5L85 3L118 9.5L164.5 6L190.5 12.5L230 9.5L259.5 3L280.5 11" stroke="black"/>
+<path class="hiddenLine" id="line4" d="M1 2.5L14 4.5L35 2.5L85.5 1L118 2.5L164.5 1L197 4.5L230 4.5L255 1L280.5 6" stroke="black"/>
+</svg>
