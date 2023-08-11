@@ -10,6 +10,8 @@ const todolistEl = document.querySelector(".todos");
 const inputField = document.getElementById("todoInput");
 const inputBtn = document.getElementById("addTodo");
 
+todolistEl.parentElement;
+
 inputBtn.addEventListener("click", function () {
     if (inputField.value.length < 3) {
         alert("Need more than 3 characters");
