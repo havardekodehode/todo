@@ -1,41 +1,23 @@
-import {
-    todolist,
-    updateLocalStorage,
-    addTodo,
-    removeTodo,
-    addSVG,
-    getSVGDoc,
-} from "./data.js";
+import { todolist, updateLocalStorage, addTodo, addSVG } from "./data.js";
+
 const todolistEl = document.querySelector(".todos");
 const inputField = document.getElementById("todoInput");
 const inputBtn = document.getElementById("addTodo");
-
-todolistEl.parentElement;
 
 inputBtn.addEventListener("click", function () {
     if (inputField.value.length < 3) {
         alert("Need more than 3 characters");
         return;
     }
-
     addTodo(inputField.value);
-
-    let animate = true;
-
-    renderPendingTodos(animate);
+    renderPendingTodos(true);
     inputField.value = "";
-
-    setTimeout(() => {}, 1000);
-    animate = false;
-
     updateLocalStorage();
 });
 
 function renderPendingTodos(animate) {
     todolistEl.innerHTML = "";
-    // todolist.forEach(createTodoHtml);
     todolist.forEach((todo, i) => {
-        // console.log(i);
         if (i === todolist.length - 1 && animate) {
             createTodoHtml(todo, true);
         } else {
@@ -45,32 +27,25 @@ function renderPendingTodos(animate) {
 }
 
 function createTodoHtml(todoOb, animate) {
-    const todo = document.createElement("div");
-    todo.classList = "todo";
-    todo.id = todoOb.id;
-
-    const textBox = document.createElement("div");
-    textBox.classList = "textbox";
-    const todoText = document.createElement("p");
-    todoText.textContent = todoOb.name;
-    // todoText.id = todoOb.id;
-    todoText.style.textAlign = "center";
-
-    // const spanEl = document.createElement("span");
-    // spanEl.textContent = timeStamp2DateTime(todoOb.id);
-
-    // const removeButton = document.createElement("button");
-    // removeButton.textContent = "Remove";
-
-    // todo.addEventListener("click", () => {
-    //     console.log("removelistener added");
-
-    //     todo.remove();
-    //     removeTodo(todo);
-    // });
-
+    const todo = createElement("div", {
+        class: "todo",
+        id: `${todoOb.id}`,
+    });
+    const textBox = createElement("div", {
+        class: "textbox",
+    });
+    const todoText = createElement(
+        "p",
+        {
+            class: todoOb.name,
+        },
+        {
+            textAlign: "center",
+        },
+        todoOb.name
+    );
     textBox.append(todoText);
-    todo.append(textBox); //spanEl removeButton
+    todo.append(textBox);
     todolistEl.prepend(todo);
 
     addSVG(false, todo, "images/checkbox.svg", "checkbox", animate, todoOb);
@@ -79,6 +54,15 @@ function createTodoHtml(todoOb, animate) {
     updateLocalStorage();
 }
 
+const createElement = (type, attributes, styles, textContent) => {
+    const el = document.createElement(type);
+    Object.assign(el.style, styles);
+    for (const [key, value] of Object.entries(attributes)) {
+        el.setAttribute(key, value);
+    }
+    el.textContent = textContent;
+    return el;
+};
 function render() {
     addSVG(
         false,
@@ -90,23 +74,4 @@ function render() {
     renderPendingTodos();
 }
 
-function timeStamp2DateTime(timeStamp) {
-    let dateOptions = {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-    };
-
-    let dateFormat = new Intl.DateTimeFormat("no-NO", dateOptions);
-    let viewFormattedDate = dateFormat.format(timeStamp);
-
-    return viewFormattedDate;
-}
-
 render();
-
-// console.log(document.getElementById("checkbox1"));
-
-// window.onload(document.querySelector(".todoInput").focus());

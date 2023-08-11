@@ -37,6 +37,10 @@ function addSVG(prependOrAppend, container, url, id, animate, todoOb) {
         let svgEl = doc.querySelector("svg");
         svgEl.setAttribute("id", id);
         if (id === "checkbox") {
+            if (animate) {
+                const checkbox = doc.getElementById("checkbox");
+                checkbox.classList.toggle("checkboxSlide");
+            }
             svgEl.addEventListener("click", () => {
                 svgEl
                     .querySelectorAll("rect")
@@ -51,39 +55,8 @@ function addSVG(prependOrAppend, container, url, id, animate, todoOb) {
                     todoRemove
                         ? (todoRemove.remove(), removeTodo(todoOb))
                         : null;
-                }, 1000);
-
-                // document.querySelectorAll(".todo").forEach((todo) => {
-                //     console.log(todo);
-                //     console.log("           " + todoOb.id);
-                //     if (todo.id === todoOb.id) {
-                //         console.log(
-                //             "Id of todo in html " +
-                //                 todo.id +
-                //                 ", id of localstorage.id " +
-                //                 todoOb.id
-                //         );
-                //         todo.remove();
-                //     }
-                //     break
-                // });
-
-                // removeTodo(todoOb);
-
-                // getSVGDoc("images/checkboxChecked.svg").then((doc) => {
-                //     svgEl = doc.querySelector("svg");
-                //     prependOrAppend
-                //         ? container.append(svgEl)
-                //         : container.prepend(svgEl);
-                //     setTimeout(() => {}, 1000);
-                //     document.getElementById("checkbox").remove();
-                //     removeTodo(todoOb);
-                //     return;
-                // });
+                }, 1500);
             });
-        } else if (id === "checkbox" && animate) {
-            const checkbox = doc.getElementById("checkbox");
-            checkbox.classList.toggle("checkboxSlide");
         }
 
         if (id === "lines" && animate) {
