@@ -49,6 +49,7 @@ function addSVG(prependOrAppend, container, url, id, animate, todoOb) {
                 svgEl.parentElement.classList.toggle("todoSlideOut");
 
                 setTimeout(() => {
+                    
                     const todoRemove = document.querySelector(
                         `.todo[id="${todoOb.id}"]`
                     );
